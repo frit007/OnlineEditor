@@ -1,0 +1,24 @@
+ <svg id="br_logo" xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 300 300">
+  <g stroke-linejoin="round" stroke-dashoffset="10">
+    <path d="M291.93 150c0 51.404-50.384 18.85-86.732 55.198S201.404 291.93 150 291.93s-18.85-50.384-55.198-86.732S8.07 201.404 8.07 150 58.453 131.15 94.8 94.802 98.596 8.07 150 8.07s18.85 50.384 55.198 86.732S291.93 98.596 291.93 150z" opacity=".95" fill="#B71C1C" stroke="#000" stroke-width="0" id="br_body"/>
+    <path d="M127.967 175.91l-.27-25.91-.272-25.91L150 136.81l22.576 12.72-22.305 13.19z" fill="#fff" stroke="#fff" stroke-width="4.00626" id="br_play"/>
+  </g>
+  <g class="arrows" fill="#fff" stroke="#fff" stroke-linejoin="round" stroke-dashoffset="10">
+    <path stroke-width="2.671" d="M145.728 37.185h8.545v21.75h-8.545z"/>
+    <path transform="matrix(.77216 0 0 .66164 28.738 12.284)" d="M174.67 44.155h-35.254l8.813-15.265 8.813-15.265 8.813 15.265z" stroke-width="6"/>
+    <path stroke-width="2.671" d="M154.272 263.158h-8.545v-21.75h8.545z"/>
+    <path d="M174.67 44.155h-35.254l8.813-15.265 8.813-15.265 8.813 15.265z" transform="matrix(-.77216 0 0 -.66164 271.262 288.06)" stroke-width="6"/>
+    <g>
+      <path stroke-width="2.671" d="M261.644 145.728v8.545h-21.75v-8.545z"/>
+      <path d="M174.67 44.155h-35.254l8.813-15.265 8.813-15.265 8.813 15.265z" transform="matrix(0 .77216 -.66164 0 286.545 28.738)" stroke-width="6"/>
+    </g>
+    <g>
+      <path stroke-width="2.671" d="M36.26 154.272v-8.545h21.75v8.545z"/>
+      <path transform="matrix(0 -.77216 .66164 0 11.358 271.262)" d="M174.67 44.155h-35.254l8.813-15.265 8.813-15.265 8.813 15.265z" stroke-width="6"/>
+    </g>
+  </g>
+</svg> 
+
+
+
+

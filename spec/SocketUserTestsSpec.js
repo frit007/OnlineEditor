@@ -1,0 +1,1 @@
+require('../SocketUser/spec/userSpec.js');

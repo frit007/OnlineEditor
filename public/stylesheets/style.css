@@ -1,0 +1,34 @@
+
+
+.roundCorners{
+    background-color: white;
+    border-radius: 20px;
+    padding: 4px;
+}
+
+
+.modal-dialog.fillScreen {
+    width: 90%;
+    height: 90%;
+    margin: 15;
+    padding: 0;
+}
+
+.modal-content.fillScreen {
+    height: auto;
+    min-height: 100%;
+    border-radius: 0;
+}
+
+.template {
+    display: none;
+}
+
+.bootstrap-select .btn span {
+    text-transform:none;
+}
+
+.hidden {
+    display: none;
+}
+

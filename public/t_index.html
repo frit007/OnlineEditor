@@ -1,0 +1,183 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+        <!-- Fa icons  -->
+        <link rel="stylesheet" href="css/font-awesome/css/font-awesome.min.css">
+        <!-- BEGIN FAVICON OPTIONS -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/favicon/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon/favicon-16x16.png">
+        <link rel="manifest" href="/favicon/manifest.json">
+        <link rel="mask-icon" href="/favicon/safari-pinned-tab.svg" color="#b71c1c">
+        <link rel="shortcut icon" href="/favicon/favicon.ico">
+        <meta name="apple-mobile-web-app-title" content="Browser controller">
+        <meta name="application-name" content="Browser controller">
+        <meta name="msapplication-config" content="/favicon/browserconfig.xml">
+        <meta name="theme-color" content="#7f0000">
+        <!-- END FAVICON OPTIONS -->
+	</head>
+	<body>
+
+        <div id="barba-wrapper">
+            <div class="barba-container">
+                <div id="app"></div>
+                
+                <div class="play circle">
+                    
+                </div>
+
+                <div class="options rightCircle">
+                    <i class="fa fa-cog fa-4x center primaryText" aria-hidden="true"></i>
+                </div>
+                <div class="playlist rightCircle">
+                    <i class="fa fa-list fa-4x center primaryText" aria-hidden="true"></i> 
+                </div>
+                <div class="services rightCircle">
+                </div>
+            </div>
+        </div>
+
+        <!-- <svg class="curved_volume" xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 79.374998 79.375002">
+            <g transform="translate(0 -217.625)">
+                <path class="slider" d="M58.15 290.883a39.8 39.8 0 0 1-18.305-33.527A39.8 39.8 0 0 1 58.2 223.858" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" />
+                <ellipse class="volume" cx="40.077" cy="255.67" rx="5.937" ry="6.355" fill="red"/>
+            </g>
+        </svg> -->
+        <!-- <svg class="curved-volume" xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 79.374998 79.375002">
+            <g  transform="translate(0 -217.625)">
+                <path class="slider" d="M58.15 290.883a39.8 39.8 0 0 1-18.305-33.527A39.8 39.8 0 0 1 58.2 223.858" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+                <ellipse class="volume-button" cx="40.077" cy="255.67" rx="5.937" ry="6.355" fill="red"/>
+            </g>
+            <g  paint-order="markers stroke fill" stroke="#111" stroke-width="5">
+                <path class="volume-icon filled" fill="#111" stroke-linejoin="round" paint-order="markers stroke fill" d="M38.074 39.258l2.226 1.925v-6.265l-2.194 1.898H36.03v2.442z" stroke-width=".63955"/>
+                <path class="volume-icon" id="volume_bar_1" d="M41.418 39.428c.246-.396.39-.862.39-1.363 0-.508-.148-.98-.4-1.38" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".63955"/>
+                <path class="volume-icon" id="volume_bar_2" d="M42.307 35.783c.473.638.753 1.428.753 2.282 0 .847-.275 1.63-.74 2.264" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".63955"/>
+                <path class="volume-icon" id="volume_bar_3" d="M43.155 41.165c.674-.852 1.077-1.93 1.077-3.1 0-1.178-.41-2.26-1.09-3.116" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".63955"/>
+            </g>
+        </svg> -->
+    <!-- <script
+    src="https://code.jquery.com/jquery-3.2.1.js"
+    integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+    crossorigin="anonymous"></script> -->
+
+        <!-- Curved volume slider svg  -->
+        <!-- <svg id="curved-volume" class="curved-volume" xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 79.374998 79.375002">
+            <path id="curved-volume-slider"class="slider" d="M58.15 73.258a39.8 39.8 0 0 1-18.305-33.526A39.8 39.8 0 0 1 58.2 6.232" fill="none" stroke="#000" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+            <g ondragstart="drag(event)" draggable="true" id="volume-group">
+                <ellipse id="volume-button" class="volume-button" ry="6.355" rx="5.937" cy="255.67" cx="40.077" transform="translate(0 -217.625)" fill="red"/>
+                <g paint-order="markers stroke fill" stroke="#111" stroke-width="5">
+                    <path fill="#111" stroke-linejoin="round" paint-order="markers stroke fill" d="M38.074 39.258l2.226 1.925v-6.265l-2.194 1.898H36.03v2.442z" stroke-width=".63955"/>
+                    <path d="M41.418 39.428c.246-.396.39-.862.39-1.363 0-.508-.148-.98-.4-1.38" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".63955"/>
+                    <path d="M42.307 35.783c.473.638.753 1.428.753 2.282 0 .847-.275 1.63-.74 2.264" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".63955"/>
+                    <path d="M43.155 41.165c.674-.852 1.077-1.93 1.077-3.1 0-1.178-.41-2.26-1.09-3.116" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".63955"/>
+                </g>
+            </g>
+        </svg> -->
+
+
+
+	</body>
+	
+
+
+	<script src="js/app/bundle.js"></script>
+	<!--<script src="js/client.min.js"></script>
+    -->
+    <!--no longer used  -->
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.2.7/raphael.js"></script> -->
+
+
+    <!-- <script src="//d3js.org/d3.v3.min.js"></script>  -->
+    <script>
+
+
+
+// var points = [[600,276],[586,393],[378,388],[589,148],[346,227],[365,108]];
+
+// var width = 960,
+//     height = 500;
+
+// // var line = d3.svg.line()
+// //     .interpolate("cardinal");
+
+// var line = document.getElementById("curved-volume-slider"); 
+
+
+// var drag = d3.behavior.drag()
+//     .on("drag", dragged);
+
+// // var svg = d3.select("body").append("svg")
+// //     .attr("width", width)
+// //     .attr("height", height);
+// var svg = document.getElementById("curved-volume");
+
+// // var path = svg.append("path")
+// //     .datum(points)
+// //     .attr("d", line);
+
+// // var line = svg.append("line");
+
+// // var circle = svg.append("circle")
+// //   .attr("transform", "translate(" + points[0] + ")")
+// //   .attr("r", 7)
+// //   .call(drag);
+// var circle = document.getElementById("volume-group");
+//     $(circle).trigger("drag");
+// // svg.append("circle")
+// //   .attr("transform", "translate(" + points[5] + ")")
+// //   .attr("r", 7)
+// //   .call(drag);
+
+// function dragged(d) {
+//   var m = d3.mouse(svg.node()),
+//     p = closestPoint(path.node(), m);
+
+//   d3.select(this)
+//     .attr("transform", "translate(" + p[0] + "," + p[1] + ")")
+// }
+
+// function closestPoint(pathNode, point) {
+//   var pathLength = pathNode.getTotalLength(),
+//       precision = 8,
+//       best,
+//       bestLength,
+//       bestDistance = Infinity;
+
+//   // linear scan for coarse approximation
+//   for (var scan, scanLength = 0, scanDistance; scanLength <= pathLength; scanLength += precision) {
+//     if ((scanDistance = distance2(scan = pathNode.getPointAtLength(scanLength))) < bestDistance) {
+//       best = scan, bestLength = scanLength, bestDistance = scanDistance;
+//     }
+//   }
+
+//   // binary search for precise estimate
+//   precision /= 2;
+//   while (precision > 0.5) {
+//     var before,
+//         after,
+//         beforeLength,
+//         afterLength,
+//         beforeDistance,
+//         afterDistance;
+//     if ((beforeLength = bestLength - precision) >= 0 && (beforeDistance = distance2(before = pathNode.getPointAtLength(beforeLength))) < bestDistance) {
+//       best = before, bestLength = beforeLength, bestDistance = beforeDistance;
+//     } else if ((afterLength = bestLength + precision) <= pathLength && (afterDistance = distance2(after = pathNode.getPointAtLength(afterLength))) < bestDistance) {
+//       best = after, bestLength = afterLength, bestDistance = afterDistance;
+//     } else {
+//       precision /= 2;
+//     }
+//   }
+
+//   best = [best.x, best.y];
+//   best.distance = Math.sqrt(bestDistance);
+//   return best;
+
+//   function distance2(p) {
+//     var dx = p.x - point[0],
+//         dy = p.y - point[1];
+//     return dx * dx + dy * dy;
+//   }
+// }
+</script>
+</html>
+

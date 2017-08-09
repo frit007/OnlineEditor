@@ -1,0 +1,57 @@
+* {
+	box-sizing: border-box;
+	margin:0;
+	padding:0;
+}
+
+.circle {
+    border-radius: 50%;
+    
+}
+
+
+.play {
+    position:absolute;
+    background-color: red;
+    
+/*        Center in screen*/
+    top:50vh;
+    left:50vw;
+
+    height: 50vw;
+    width: 50vw;
+    
+transform: translate(-25vw, -25vw);
+}
+
+
+
+.options {
+    position:absolute;
+    background-color: red;
+	
+    
+/*  circle center(25vh) + circle radius(25vh) + space(5vh) */
+    left:80vw;
+/*  circle center (50 vh) */
+    top:20vh;
+
+    height: 16vw;
+    width: 16vw;
+    transform: translate(-8vw, -8vw);
+}
+
+
+@media (orientation:landscape) {
+    .play {
+        
+        transform: translate(-25vh, -25vh);
+        height: 50vh;
+        width: 50vh;
+    }
+    .options {
+        height: 16vh;
+        width: 16vh;
+        transform: translate(-8vh, -8vh);
+    }
+}

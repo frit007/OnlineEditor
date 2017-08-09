@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="300" viewBox="0 0 79.374998 79.375002">
+  <path d="M22.68 71.344a37.595 37.595 0 0 1-17.29-31.67A37.595 37.595 0 0 1 22.726 8.032" fill="none" stroke="#000" stroke-width="5.668" stroke-linecap="round" stroke-linejoin="round"/>
+  <g draggable="true" id="volume-group">
+    <ellipse id="volume-button" className="volume-button grabbable" ry="6.003" rx="5.608" cy="38.082" cx="5.608" fill="red"/>
+    <g className="volume-icon" stroke="#111" stroke-width=".64" paint-order="markers stroke fill">
+      <path className="filled"  d="M3.716 39.227l2.103 1.82v-5.92l-2.074 1.794h-1.96v2.307z" fill="#111" stroke-linejoin="round" paint-order="markers stroke fill" stroke-width=".6045376"/>
+      <path className="volume-bar" d="M6.875 39.388c.232-.374.368-.814.368-1.287 0-.48-.14-.925-.378-1.303" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".6045376"/>
+      <path className="volume-bar" d="M7.714 35.945c.447.603.712 1.35.712 2.156 0 .8-.26 1.54-.7 2.14" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".6045376"/>
+      <path className="volume-bar" d="M8.515 41.03c.637-.806 1.018-1.824 1.018-2.93 0-1.112-.387-2.134-1.03-2.943" fill="none" stroke-linecap="round" paint-order="markers stroke fill" stroke-width=".6045376"/>
+    </g>
+  </g>
+</svg>
