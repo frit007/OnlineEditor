@@ -18,8 +18,9 @@ export default class ProjectsCreator extends Component {
 		axios.post("/projects/store", {
 			name: this.state.name
 		}).then(function(result) {
-			window.location = "/projects" + results.id
+			window.location = "/editor/" + result.data.id
 		}).catch(function(err) {
+			console.error("error", err);
 			alert("Error occured");			
 		})
 		

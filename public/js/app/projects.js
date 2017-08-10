@@ -26322,8 +26322,9 @@ var ProjectsCreator = function (_Component) {
 			_axios2.default.post("/projects/store", {
 				name: _this.state.name
 			}).then(function (result) {
-				window.location = "/projects" + results.id;
+				window.location = "/editor/" + result.data.id;
 			}).catch(function (err) {
+				console.error("error", err);
 				alert("Error occured");
 			});
 

@@ -15,7 +15,7 @@ module.exports = function(mysqlPool) {
 
 
 		create(name, user, callback) {
-			var connection, projectId, folderName;
+			var connection, projectId, root_folder;
 			mysqlPool.getConnection()
 			.then(con => {
 				connection = con;
@@ -24,6 +24,7 @@ module.exports = function(mysqlPool) {
 			.then(() => {
 				return new Promise( function(accept, reject) {
 					fileManager.generateFolderName(name, function(err, folderName) {
+						root_folder = folderName;
 						if (err) {
 							reject(err);
 						}
@@ -43,9 +44,9 @@ module.exports = function(mysqlPool) {
 			})
 			.then(() => {
 				callback(null, {
-					root_folder: folderName,
+					root_folder,
 					id: projectId,
-					name: name
+					name
 				})
 			})
 			.catch(err => {
