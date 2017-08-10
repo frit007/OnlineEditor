@@ -1,0 +1,3 @@
+[submodule "SocketUser"]
+	path = SocketUser
+	url = https://github.com/frit007/SocketUser.git
