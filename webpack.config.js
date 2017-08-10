@@ -18,7 +18,8 @@ var config = {
 	// devtool: debug ? "inline-sourcemap" : false,
 	//entry: "./js/client.js",
 	entry: {
-		editor: SRC_DIR + "/editor.js",
+		editor: SRC_DIR + "/editor/editor.js",
+		projects: SRC_DIR + "/projects/projects.js"
 	},
 	// entry: SRC_DIR + "/app/index.js",
 	module:
@@ -33,7 +34,6 @@ var config = {
 						loader: "css-loader" // translates CSS into CommonJS
 					}, {
 						loader: "sass-loader", // compiles Sass to CSS
-
 					}
 				],
 			},

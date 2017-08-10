@@ -5,7 +5,10 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var expressValidator = require('express-validator');
-var mysql = require('mysql');
+// var mysql = require('mysql');
+var mysql = require('promise-mysql');
+
+
 
 var users = require('./routes/users');
 
@@ -51,8 +54,8 @@ sessionMiddleware = expressSession({
 
 
 var mysqlPool = mysql.createPool(config.db);
-var users = require('./SocketUser/modules/users.js')(mysqlPool, sessionMiddleware, config);
-
+var users = require('./modules/users.js')(mysqlPool, sessionMiddleware, config);
+var ProjectManger = require('./modules/project-manager')(mysqlPool);
 
 
 
@@ -79,12 +82,17 @@ app.use(express.static(path.join(__dirname, 'public')));
 /*---------------- SETUP ROUTES ----------------*/
 var authRoutes = require('./SocketUser/routes/auth')(users);
 var indexRoutes = require('./routes/index')(users);
+var userRoutes = require('./routes/users')(users);
 var editorRoutes = require('./routes/editor')(users);
+var projectsRoutes = require('./routes/projects')(users, ProjectManger);
+var apiRoutes = require('./routes/api')(users, ProjectManger);
 
 app.use('/', indexRoutes);
-// app.use('/users', users);
+app.use('/users', userRoutes);
 app.use('/auth', authRoutes);
 app.use('/editor', editorRoutes);
+app.use('/projects', projectsRoutes);
+app.use('/api', apiRoutes);
 
 
 

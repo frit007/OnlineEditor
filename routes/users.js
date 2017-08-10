@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
 
-/* GET users listing. */
-router.get('/', function(req, res, next) {
-  res.send('respond with a resource');
-});
+module.exports = function(users) {
 
-module.exports = router;
+	router.use(users.requireLogin);
+
+	router.get('/whoami', function(req, res, next) {
+		res.send(JSON.stringify(req.user.getInfo()));
+	})
+	return router;
+}
+

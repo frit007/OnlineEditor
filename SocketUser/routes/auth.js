@@ -38,7 +38,7 @@ module.exports = function(users) {
 					res.status(500).render("error",{error: err});
 					return;
                 }
-				req.session.user = {id: userResponse.id, display_name: userResponse.display_name};
+				req.session.user = {id: userResponse.id, name: userResponse.name};
 				if (!res.headersSent) {
     				res.redirect("/");
 				}

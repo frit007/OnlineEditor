@@ -64,3 +64,6 @@ typings/
 config.json
 
 public/images/uploads/*
+
+# 
+uploads/
