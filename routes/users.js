@@ -7,6 +7,7 @@ module.exports = function(users) {
 
 	router.get('/whoami', function(req, res, next) {
 		res.send(JSON.stringify(req.user.getInfo()));
+		
 	})
 	return router;
 }

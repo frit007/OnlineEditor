@@ -1,12 +1,21 @@
 import axios from 'axios';
 
 
+const userAction = require('./actions-user');
+import * as userActions from './actions-user';
+// console.warn("user action",userActions);
+// export userAction;
+// export const z = {
+// 	a:31
+// }
+
+
 export const FETCH_PROJECTS = 'fetch_projects';
-export const FETCH_USER = 'fetch_user';
+export const UPDATE_USER = 'update_user';
 
-export function fetchProjects() {
-
-	const request = axios.get("/api/projects/all")
+export function fetchProjects(user_id) {
+	console.log("user_id", user_id);
+	const request = axios.get("/api/projects/by_user/"+user_id)
 
 	return {
 		type: FETCH_PROJECTS,
@@ -14,12 +23,11 @@ export function fetchProjects() {
 	}
 }
 
-export function fetchUser() {
-	const request = axios.get('/users/whoami')
+export function updateUser(user) {
 
 	return {
-		type: FETCH_USER,
-		payload: request
+		type: UPDATE_USER,
+		payload: user
 	}
 }
 

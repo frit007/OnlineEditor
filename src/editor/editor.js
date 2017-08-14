@@ -12,6 +12,8 @@ const createStoreWithMiddleware = applyMiddleware(ReduxPromise)(createStore);
 
 ReactDOM.render(
   <Provider store={createStoreWithMiddleware(reducers)}>
-    <Editor />
+    {/* Project is gotten from the index file,
+    Find a better way to this for future use */}
+    <Editor project={project}/>
   </Provider>
   , document.querySelector('#editor'));

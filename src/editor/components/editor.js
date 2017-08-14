@@ -11,8 +11,8 @@ export default class Editor extends Component {
   render() {
     return (
       <div style={{height:100+'vh'}}>
-        <FileList />
-        <FileEditor />
+        <FileList project={this.props.project}/>
+        <FileEditor project={this.props.project}/>
       </div>
     );
   }

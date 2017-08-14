@@ -2,12 +2,12 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux'
 
-import {fetchProjects, fetchUser} from '../actions';
+import {fetchProjects, updateUser} from '../actions';
 
 import ProjectsView from '../components/projects-view';
 console.log(ProjectsView);
 import ProjectCreator from '../components/projects-creator';
-
+import axios from 'axios';
 
 import "../css/projects.scss";
 
@@ -20,13 +20,18 @@ class ProjectContainer extends Component {
 		super(props);
 
 		this.state = {
-			view: CREATOR
+			view: VIEW
 		}
 	}
 
 	componentWillMount() {
-		this.props.fetchProjects()
-		this.props.fetchUser();
+		var user;
+		axios.get('/users/whoami')
+		.then((response) => {
+			user = response.data;
+			this.props.updateUser(user);
+			this.props.fetchProjects(user.id);
+		})
 
 	}
 
@@ -36,9 +41,17 @@ class ProjectContainer extends Component {
 		})
 	}
 
+	createClicked = () => {
+		this.setState({
+			view: CREATOR
+		})
+	}
+
 	render() {
 		if (this.state.view == VIEW) {
-			return (<ProjectsView />)
+			return (<ProjectsView 
+			projects={this.props.projects} 
+			createClicked={this.createClicked}/>)
 		} else {
 			return (<ProjectCreator cancel={this.cancelCreation}/>)
 		}
@@ -61,7 +74,7 @@ function mapStateToProps({user, projects}) {
 }
 
 function mapDispatchToProps(dispatch) {
-	return bindActionCreators({fetchProjects, fetchUser}, dispatch)
+	return bindActionCreators({fetchProjects, updateUser}, dispatch)
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(ProjectContainer)

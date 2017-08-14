@@ -1,0 +1,109 @@
+const Content = require('../modules/Content');
+
+function example() {
+    return new Content("Lorem ipsum");
+}
+
+
+describe("Simple insert", function() {
+    function insertedHello() {
+        var e = example();
+        e.updateText("LoremHello ipsum");
+        return e;
+    }
+    it("it find the first difference", function() {
+        var e = example();
+        expect(e.findFirstDifference("LoremHello ipsum")).toBe(5);
+    })
+    
+    it("inserted text was hello",function() {
+        var update = insertedHello().lastUpdate();
+        expect(update.text).toBe("Hello")
+    })
+
+    it("did not replace anything when inserting Hello", function() {
+        var update = insertedHello().lastUpdate();
+        expect(update.oldText).toBe("")
+    })
+
+    it("was able to undo", function() {
+        var helloContent = insertedHello();
+        helloContent.undo();
+        expect(helloContent.text).toBe("Lorem ipsum");
+    })
+})
+
+describe("Replace ipsum with world (check that the last word can be replaced)", function() {
+    function scenario() {
+        var e = example();
+        e.updateText("Lorem world");
+        return e;
+    }
+
+    it("it replaced the ipsum", function() {
+        expect(scenario().lastUpdate().oldText).toBe("ipsum");
+    }) 
+
+    it("the new text is world", function() {
+        expect(scenario().lastUpdate().text).toBe("world");
+    })
+
+    it("should be undone", function () {
+        var undone = scenario();
+        undone.undo();
+        expect(undone.text).toBe("Lorem ipsum");
+    })
+    
+})
+
+describe("Replace the ipsum with Gone (check that the first word can be replaced)", function() {
+    function scenario() {
+        var e = example();
+        e.updateText("Gone ipsum");
+        return e;
+    }
+
+    it("new text is", function() {
+        expect(scenario().lastUpdate().text).toBe("Gone");
+    })
+
+    it("replaced text is", function() {
+        expect(scenario().lastUpdate().oldText).toBe("Lorem");
+    })
+
+    it("index should be 0", function() {
+        expect(scenario().lastUpdate().index).toBe(0);
+    })
+
+    it("should be undone", function () {
+        var undone = scenario();
+        undone.undo();
+        expect(undone.text).toBe("Lorem ipsum");
+    })
+
+    it("should be redone", function() {
+        var redone = scenario();
+        redone.undo();
+        redone.redo();
+        expect(redone.text).toBe("Gone ipsum");
+    })
+})
+
+describe("redo history", function() {
+    var continual = example();
+    it("added norem",function() {
+        continual.updateText("Lorem ipsum norem");
+        expect(continual.text).toBe("Lorem ipsum norem");
+    })
+
+    it("undid", function() {
+        continual.undo();
+        expect(continual.text).toBe("Lorem ipsum");
+    })
+
+    it("lost ability to redo after changing text", function() {
+        continual.updateText("Lorem street");
+        continual.redo();
+        expect(continual.text).toBe("Lorem street");
+    })
+})

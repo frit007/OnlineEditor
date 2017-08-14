@@ -1,11 +1,11 @@
-import {FETCH_USER} from '../actions'
+import {UPDATE_USER} from '../actions'
 
 export default function(state = null, action) {
 
 	switch(action.type) {
-		case FETCH_USER:
+		case UPDATE_USER:
 		console.log(action);
-			return action.payload.data; 
+			return action.payload; 
 	}
 
 	return state;

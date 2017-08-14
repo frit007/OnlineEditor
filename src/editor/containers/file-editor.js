@@ -4,18 +4,56 @@ import {bindActionCreators} from 'redux';
 import '../css/file-editor.scss';
 import "codemirror/lib/codemirror.css";
 import CodeMirror from 'react-codemirror';
+import socket from 'socket.io-client';
 
 console.log(CodeMirror);
 
 class FileEditor extends Component {
 	constructor(props) {
 		super(props);
-
-		
+		this.state = {content: ""}
+		window.editor = this;	
 	}
 	
-	updateCode = (event) => {
+	componentWillMount() {
+		this.socket = new socket('/editor');
+		this.socket.on("err", ({type, err}) => {
+			console.error(type, err);
+		})
+		this.socket.on("updateContent", (content) => {
+			console.warn("updateContent", content);
+			// TODO maybe handle conflicts here?
+			this.setState({
+				content
+			})
+		})
+	}
 
+	updateCode = (content) => {
+		// console.warn("status", this)		
+		this.setState({
+			content
+		})
+	}
+	
+	componentWillReceiveProps = (props) => {
+		const updateSocketFile = (path) => {
+			this.socket.emit('openFile', {
+				path,
+				project_id: this.props.project.id
+			})
+		}
+
+		if(props.activeFile) {
+			if(this.props.activeFile) {
+				if(this.props.activeFile.path != props.activeFile.path) {
+					updateSocketFile(props.activeFile)
+				}
+			} else {
+				updateSocketFile(props.activeFile.path)
+			}
+		}
+		
 	}
 
 	render() {
@@ -26,13 +64,18 @@ class FileEditor extends Component {
 		}
 
 		var activeFile = this.props.activeFile;
-		console.log(activeFile);
+		// console.warn("active file",activeFile);
 		var options = {
 			lineNumbers: true
 		}
 		return (
 			<div className="file-editor">
-				<CodeMirror value={activeFile.code} onChange={this.updateCode} options={options} />
+				<CodeMirror
+				ref="codeMirror" 
+				className="file-code"
+				value={this.state.content}
+				onChange={this.updateCode} 
+				options={options} />
 			</div>
 		)
 	}
