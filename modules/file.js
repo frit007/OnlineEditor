@@ -1,5 +1,8 @@
 const Group = require('../SocketUser/modules/Group');
 const fs = require('fs');
+
+const ServerContent = require('./content/server-content');
+
 module.exports = function(mysqlPool) {
 	class File extends Group {
 		// expects absolutePath, which means that you have to include 
@@ -15,13 +18,17 @@ module.exports = function(mysqlPool) {
 		}
 
 		getContent(callback) {
-			if (this.content) return callback(this.content);
+			if (this.content) return callback(null, this.content);
+			if(typeof this.absolutePath != "string") {
+				callback("path has to be a string");
+				return;
+			}
 
-			fs.readFile(this.absolutePath, (err, content) => {
+			fs.readFile(this.absolutePath, 'utf8', (err, text) => {
 				if(err) return callback(err);
-				
-				this.content = content;
-				callback(content);
+				// this.content = content;
+				this.content = new ServerContent(text);
+				callback(null, this.content);
 			})
 		}
 
@@ -33,15 +40,25 @@ module.exports = function(mysqlPool) {
 						err
 					})
 				}
-				this.emit("updateContent", content);
+				this.emit("updateContent", {
+					content: content.text,
+					version: content.version
+				});
 			})
 		}
 
 	}
 	function bindSocketEvents(file) {
-		file.on("getFile", function(data) {
-			file.emitContent();
-		})
+		// file.on("getFile", function(data) {
+		// 	this.updateFilters({
+		// 		file: file.absolutePath
+		// 	})
+		// 	file.emitContent();
+		// });
+
+		// file.on("", function() {
+			
+		// });
 	}
 
 

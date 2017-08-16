@@ -2,38 +2,80 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import '../css/file-editor.scss';
-import "codemirror/lib/codemirror.css";
-import CodeMirror from 'react-codemirror';
+
+// import "codemirror/lib/codemirror.css";
+// import CodeMirror from 'react-codemirror';
+
+
+import brace from 'brace';
+import AceEditor from 'react-ace';
+
+import 'brace/mode/java';
+import 'brace/mode/lua';
+
+
+import 'brace/theme/github';
+
 import socket from 'socket.io-client';
 
-console.log(CodeMirror);
+const Content = require('../../../modules/content/client-content');
+
+
+
+
+window.Content = Content;
+
+// console.log(CodeMirror);
 
 class FileEditor extends Component {
 	constructor(props) {
 		super(props);
-		this.state = {content: ""}
-		window.editor = this;	
+		this.state = {content: new Content("")}
+		window.editor = this;
+		this.content;
 	}
 	
 	componentWillMount() {
+		let that = this;
+
+
 		this.socket = new socket('/editor');
 		this.socket.on("err", ({type, err}) => {
 			console.error(type, err);
 		})
-		this.socket.on("updateContent", (content) => {
-			console.warn("updateContent", content);
-			// TODO maybe handle conflicts here?
-			this.setState({
-				content
+		
+
+		this.socket.on("updateContent", ({content, version}) => {
+			console.warn("updateContent", content, version);
+
+			// debugger;
+			that.setState({
+				content: new Content(content, version, (text) => {
+					console.log("text", text);
+					that.ace.editor.setValue(text);
+				})
 			})
+			// // TODO maybe handle conflicts here?
+			// this.setState({
+			// 	content: ""
+			// })
 		})
 	}
 
-	updateCode = (content) => {
-		// console.warn("status", this)		
+	undo = () => {
+		this.content.undo();
 		this.setState({
-			content
+			content: this.content.text
 		})
+	}
+
+	onChange = (text) => {
+		// console.warn("status", this)
+
+		this.content.updateText(text);
+		// this.setState({
+		// 	content: text
+		// })
 	}
 	
 	componentWillReceiveProps = (props) => {
@@ -47,13 +89,17 @@ class FileEditor extends Component {
 		if(props.activeFile) {
 			if(this.props.activeFile) {
 				if(this.props.activeFile.path != props.activeFile.path) {
-					updateSocketFile(props.activeFile)
+					updateSocketFile(props.activeFile.path);
 				}
 			} else {
-				updateSocketFile(props.activeFile.path)
+				updateSocketFile(props.activeFile.path);
 			}
 		}
 		
+	}
+
+	shouldComponentUpdate (nextProps, nextState) {
+		return this.state.content !== nextState.content.text
 	}
 
 	render() {
@@ -70,12 +116,22 @@ class FileEditor extends Component {
 		}
 		return (
 			<div className="file-editor">
-				<CodeMirror
-				ref="codeMirror" 
+				{/* <CodeMirror
+				ref={(mirror) => {this.mirror = mirror}}
 				className="file-code"
 				value={this.state.content}
 				onChange={this.updateCode} 
-				options={options} />
+				options={options} /> */}
+
+				  <AceEditor
+					ref={(ace) => {this.ace = ace}}
+					mode="lua"
+					theme="github"
+					value={this.state.content.text}
+					onChange={this.onChange}
+					name="UNIQUE_ID_OF_DIV"
+					editorProps={{$blockScrolling: true}}
+				/>
 			</div>
 		)
 	}

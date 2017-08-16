@@ -18,7 +18,7 @@ export function loadFiles(projectId) {
 }
 
 export function fileSelected(file) {
-    
+    console.log("selected file", file);
 
     return {
         type: FILE_SELECTED,

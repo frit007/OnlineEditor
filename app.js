@@ -41,6 +41,7 @@ var config = {
 	session: {
 		secret: process.env.SESSION_SECRET
 	},
+	no_network: 0 || process.env.NO_NETWORK,
 	debug: true
 }
 
@@ -55,7 +56,7 @@ sessionMiddleware = expressSession({
 
 var mysqlPool = mysql.createPool(config.db);
 var users = require('./modules/users.js')(mysqlPool, sessionMiddleware, config);
-var ProjectManger = require('./modules/project-manager')(mysqlPool);
+var ProjectManger = require('./modules/project-manager')(mysqlPool, users);
 
 
 
@@ -83,7 +84,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 var authRoutes = require('./SocketUser/routes/auth')(users);
 var indexRoutes = require('./routes/index')(users);
 var userRoutes = require('./routes/users')(users);
-var editorRoutes = require('./routes/editor')(users);
+var editorRoutes = require('./routes/editor')(users, ProjectManger);
 var projectsRoutes = require('./routes/projects')(users, ProjectManger);
 var apiRoutes = require('./routes/api')(users, ProjectManger);
 
@@ -162,7 +163,7 @@ var socket = require('socket.io')(server);
 // ns.on('connection', function(c) {
 // 	console.log(c);
 // })
-require("./sockets/editor")(users, socket);
+require("./sockets/editor")(users, ProjectManger, socket);
 
 
 module.exports = server;

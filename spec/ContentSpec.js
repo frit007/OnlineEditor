@@ -1,4 +1,7 @@
-const Content = require('../modules/Content');
+const Content = require('../modules/content/content');
+const ServerContent = require('../modules/content/server-content');
+const ClientContent = require('../modules/content/client-content');
+
 
 function example() {
     return new Content("Lorem ipsum");
@@ -107,3 +110,110 @@ describe("redo history", function() {
         expect(continual.text).toBe("Lorem street");
     })
 })
+
+
+describe("undo action" ,function() {
+    it("last end string undo", function() {
+        var a = new Content("hello world");
+        a.updateText("hello world norem");
+        a.undo();
+        expect(a.text).toBe("hello world");
+    })
+
+}) 
+
+
+describe("find last difference", function() {
+    it("test from '' to 'hello' ", function() {
+        var x = new Content("hello");
+        expect(x.lastUpdate().text).toBe("hello");
+    })
+})
+
+describe("duplicates", function() {
+    describe("duplicate letter", function() {
+        var x = new Content("x");
+        x.updateText("xx");
+
+        it("added the letter x", function() {
+            expect(x.lastUpdate().text).toBe("x");
+        })
+
+        it("did not replace anything", function() {
+            expect(x.lastUpdate().oldText).toBe("");
+        });
+
+        it("is able to be undone", function() {
+            x.undo();
+            expect(x.text).toBe("x");
+        })
+
+        it("is able to be redone", function() {
+            x.redo();
+            expect(x.text).toBe("xx");
+        })
+    })
+
+    describe("duplicate word", function() {
+        var x = new Content("hello world");
+        x.updateText("hello world world");
+
+        it("added the word world", function() {
+            expect(x.lastUpdate().text).toBe(" world");
+        })
+
+        it("did not replace anything", function() {
+            expect(x.lastUpdate().oldText).toBe("");
+        });
+
+        it("is able to be undone", function() {
+            x.undo();
+            expect(x.text).toBe("hello world");
+        })
+
+        it("is able to be redone", function() {
+            x.redo();
+            expect(x.text).toBe("hello world world");
+        })
+    })
+})
+
+
+describe("client and server", function() {
+    var server = new ServerContent();
+    
+    var client = new ClientContent();
+
+    it("", function() {
+        expect().toBe();
+    })
+})
+
+// describe("iterative test", function() {
+    
+//     var content = new Content();
+//     var inserts = 0;
+//     function addLetter(letter) {
+//         content.updateText(content.text + letter);
+        
+//         inserts++;
+//     }
+
+//     addLetter("L");
+//     addLetter("o");
+//     addLetter("r");
+//     addLetter("e");
+//     addLetter("m");
+//     addLetter(" ");
+//     addLetter("i");
+//     addLetter("i");
+
+//     for (inserts; inserts > 1; index--) {
+//         content.undo();
+//     }
+
+//     it("expect empty string", function() {
+//         expect(conent.text).toBe("");
+//     })
+// })
+

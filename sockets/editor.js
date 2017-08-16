@@ -30,6 +30,8 @@ module.exports = function(users, ProjectManager, socket) {
                     return emitError("GetProjectError", err);
                 }
                 project.getFile(path, function(err, file) {
+                    
+
                     if (err) {
                         return emitError("GetFileError", err);
                     }

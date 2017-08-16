@@ -14,6 +14,7 @@ export default class MenuFolder extends Component {
 		return children.map
 		((child) => {
 			if(child.children) {
+				// debugger;
 				// If the child has children then it is a folder
 				return (
 					<MenuFolder
@@ -63,7 +64,6 @@ export default class MenuFolder extends Component {
 			}
 		}
 		
-		console.warn("menu-folder",this.props);
 		var file = this.props.file
 		
 		if(!file) {

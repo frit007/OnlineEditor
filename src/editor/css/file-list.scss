@@ -28,6 +28,7 @@ border-radius: 0px;
 .folder-bar {
 	height: 20px;
 	color: $primary-text;
+	cursor: pointer;
 }
 .folder-bar:hover {
 	background-color: $primary-dark;
@@ -49,6 +50,7 @@ border-radius: 0px;
 }
 
 .file {
+	cursor: pointer;
 
 }
 

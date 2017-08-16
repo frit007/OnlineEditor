@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www"
+    "start": "node ./bin/www",
+    "test": "jasmine-node spec/"
   },
   "dependencies": {
     "ajv": "^5.2.2",
@@ -34,9 +35,11 @@
     "jquery": "^3.2.1",
     "morgan": "~1.8.1",
     "mysql": "^2.13.0",
+    "promise-mysql": "^3.0.2",
     "randomstring": "^1.1.5",
     "raw-loader": "^0.5.1",
     "react": "^0.14.9",
+    "react-ace": "^5.1.2",
     "react-bootstrap": "^0.31.2",
     "react-codemirror": "^1.0.0",
     "react-dom": "^0.14.9",
@@ -44,7 +47,7 @@
     "react-svg-inline": "^2.0.0",
     "redux": "^3.7.2",
     "redux-promise": "^0.5.3",
-    "redux-promise-middleware": "^4.3.0",
+    "redux-promise-middleware": "^4.2.1",
     "serve-favicon": "~2.3.2",
     "socket.io": "^1.7.3",
     "url-loader": "^0.5.9",
